@@ -1,0 +1,17 @@
+{
+  "name": "hathyst",
+  "version": "1.0.0",
+  "description": "Clean artwork explorer",
+  "main": "apiHitTest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthew Goodman",
+  "license": "MIT",
+  "devDependencies": {
+    "async": "^2.0.0-rc.3",
+    "fs": "0.0.2",
+    "htmlparser": "^1.7.7",
+    "jquery": "^2.2.3"
+  }
+}
