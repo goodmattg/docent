@@ -1,26 +1,33 @@
 var async = require('async');
-var getImage = require('./apiHitTest.js');
+var getImage = require('./getImage.js');
 
-async.parallel([
-  function (callback) {
-    getImage('1', callback);
-  },
-    function (callback) {
-    getImage('2', callback);
-  },
-    function (callback) {
-    getImage('3', callback);
-  },
-    function (callback) {
-    getImage('4', callback);
-  },
-    function (callback) {
-    getImage('5', callback);
-  }
-],
-function (err, results) {
-  if (err !== null) {
-    throw err;
-  }
+var fillCache = new Promise(function (resolve, reject) {
+
 });
 
+var fillCache = function () {
+  async.series([
+    function (callback) {
+      getImage('1');
+    },
+    function (callback) {
+      getImage('2', function (err, results) {
+        if (err !== null) {
+          callback(err);
+        } else {
+          callback(results);
+        }
+      });
+    }
+  ],
+  function (err, results) {
+    debugger;
+    if (err !== null) {
+      console.log(err);
+      throw err;
+    }
+    console.log(results);
+  });
+};
+
+module.exports = fillCache;
