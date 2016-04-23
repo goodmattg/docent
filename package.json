@@ -4,14 +4,51 @@
   "description": "Clean artwork explorer",
   "main": "apiHitTest.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matthew Goodman",
   "license": "MIT",
   "devDependencies": {
-    "async": "^2.0.0-rc.3",
-    "fs": "0.0.2",
-    "html-to-json": "^0.6.0",
-    "jquery": "^2.2.3"
-  }
+      "async": "*",
+      "babel-preset-react": "*",
+      "babel-register": "*",
+      "browserify": "*",
+      "browserify-resolutions": "*",
+      "eslint-plugin-react": "*",
+      "expect": "*",
+      "fs": "*",
+      "grunt": "*",
+      "grunt-mocha-test": "*",
+      "grunt-shell": "*",
+      "gulp": "*",
+      "gulp-eslint": "*",
+      "gulp-zip": "*",
+      "html-to-json": "*",
+      "jsdom": "*",
+      "proxyquire": "*",
+      "redux-devtools": "*",
+      "sinon": "*",
+      "vinyl-source-stream": "*",
+      "watchify": "*"
+    },
+    "dependencies": {
+      "ejs": "*",
+      "eslint": "*",
+      "express": "*",
+      "grunt-cli": "*",
+      "gruntify-eslint": "*",
+      "jquery": "*",
+      "lodash": "*",
+      "react": "*",
+      "react-addons-test-utils": "*",
+      "react-addons-update": "*",
+      "react-dom": "*",
+      "react-redux": "*",
+      "reactify": "*",
+      "redux": "*"
+    }
 }
+
+
+
