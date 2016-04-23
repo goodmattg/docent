@@ -61,13 +61,13 @@ var getImage = function (filename, outerCb) {
           'caption': {
             $container: '.layout-wrapper .short-caption',
               'artist': function ($doc) {
-                return $doc.find('h2 a').text();
+                return $doc.find('h2 a').text().replace(/\r?\n|\r/g, '');
               },
               'title': function ($doc) {
-                return $doc.find('h1').text();
+                return $doc.find('h1').text().replace(/\r?\n|\r/g, '');;
               },
               'year': function ($doc) {
-                return $doc.find('h3').text();
+                return $doc.find('h3').text().replace(/\r?\n|\r/g, '');;
               }
           }
         }
@@ -82,13 +82,17 @@ var getImage = function (filename, outerCb) {
     }
     ,
     function (pageObject, callback) {
-      console.log(pageObject);
+      Object.assign(pageObject, {file: filename + '.jpg'});
       var url = 'http://moma.org' + pageObject['image-container'].image;
 
       request(url, {encoding: 'binary'}, function(error, response, body) {
         if (!error && response.statusCode == 200) {
-          fs.writeFile(filename + '.jpg', body, 'binary', function (err) {});
-          callback(null, body);
+          // Store the image in cache folder
+          fs.writeFile('public/imageCache/' + pageObject.file, body, 'binary', function (err) {
+            return err;
+          });
+          // return the caption object
+          callback(null, pageObject.caption);
         } else {
           callback(error);
         }
@@ -101,42 +105,11 @@ var getImage = function (filename, outerCb) {
        console.log('Error: ');
        outerCb(err);
      } else {
-       outerCb(null);
+      // passes the caption object to outer callback
+       outerCb(results);
      }
    });
 }
 
 module.exports = getImage;
-
-
-// var http = require('http')
-//   , fs = require('fs');
-
-// fs.readFile('image.jpg', function(err, data) {
-//   if (err) throw err; // Fail if the file can't be read.
-//   http.createServer(function(req, res) {
-//     res.writeHead(200, {'Content-Type': 'image/jpeg'});
-//     res.end(data); // Send the file data to the browser.
-//   }).listen(8124);
-//   console.log('Server running at http://localhost:8124/');
-// });
-
-// fs = require('fs');
-// http = require('http');
-// url = require('url');
-
-
-// http.createServer(function(req, res){
-//   var request = url.parse(req.url, true);
-//   var action = request.pathname;
-
-//   if (action == '/logo.gif') {
-//      var img = fs.readFileSync('./logo.gif');
-//      res.writeHead(200, {'Content-Type': 'image/gif' });
-//      res.end(img, 'binary');
-//   } else {
-//      res.writeHead(200, {'Content-Type': 'text/plain' });
-//      res.end('Hello World \n');
-//   }
-// }).listen(8080, '127.0.0.1');
 

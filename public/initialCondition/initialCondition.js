@@ -10,6 +10,7 @@ git var cacheSize = 10;
 
 
 var initialCondition = {
+  current_image:
   images: [],
   mode: 'answer'
 };
