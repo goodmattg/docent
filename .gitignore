@@ -1,0 +1,19 @@
+# Logs
+*.log
+
+# eslint rules
+*.eslintrc
+
+# Grunt intermediate storage
+*.grunt
+
+# Dependency Directory
+node_modules
+
+# npm Debug log
+npm-debug.log
+
+*DS_Store
+
+# Image files
+*.jpg

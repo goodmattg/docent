@@ -11,7 +11,7 @@
   "devDependencies": {
     "async": "^2.0.0-rc.3",
     "fs": "0.0.2",
-    "htmlparser": "^1.7.7",
+    "html-to-json": "^0.6.0",
     "jquery": "^2.2.3"
   }
 }
