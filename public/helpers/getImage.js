@@ -61,6 +61,7 @@ var getImage = function(filename) {
             'caption': {
               $container: '.layout-wrapper .short-caption',
                 'artist': function ($doc) {
+                  // Trim newline characters from caption fields
                   return $doc.find('h2 a').text().replace(/\r?\n|\r/g, '');
                 },
                 'title': function ($doc) {
