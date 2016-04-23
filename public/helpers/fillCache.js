@@ -9,7 +9,7 @@ var fillCache = function (cacheSize) {
     var imagePromises = images.map(getImage);
 
     // Condition the fill cache promise on fulfill of individual images
-    Promise.all(imagePromises).then(function (response) {
+    Promise.all(imagePromises).then(function (results) {
       resolve(results);
     }, function (error) {
       reject(error);

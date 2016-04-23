@@ -1,19 +1,17 @@
-git var cacheSize = 10;
+var fillCache = require('../helpers/fillCache.js');
 
-(function(){
-  console.log(cacheSize);
-  var nums = new Array(cacheSize);
-  console.log(nums);
+var initialCondition = function () {
 
-  console.log(initialCondition.images.length);
-})();
+  return new Promise (function (resolve, reject) {
 
+    var cache = fillCache(6); // Preset cache
 
-var initialCondition = {
-  current_image:
-  images: [],
-  mode: 'answer'
+    cache.then(function (result) {
+      var cur = result.pop();
+      var condition = Object.assign({}, { current_image: cur, images: result, mode: 'answer' });
+      resolve(condition);
+    });
+  });
 };
-
 
 module.exports = initialCondition;

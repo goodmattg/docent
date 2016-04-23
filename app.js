@@ -1,12 +1,9 @@
 var getImage = require('./public/helpers/getImage.js');
 var fillCache = require('./public/helpers/fillCache.js');
+var initialCondition = require('./public/initialCondition/initialCondition.js');
 
+var init = initialCondition();
 
-(function () {
-  var cache = fillCache(10);
-
-  cache.then(function (result) {
-    console.log(result);
-  });
-
-})();
+init.then(function (result) {
+  console.log(JSON.stringify(result));
+});

@@ -86,13 +86,11 @@ var getImage = function(filename) {
 
         Object.assign(pageObject, {file: filename + '.jpg'});
         var url = 'http://moma.org' + pageObject['image-container'].image;
-        debugger;
         request(url, {encoding: 'binary'}, function(error, response, body) {
           if (!error && response.statusCode == 200) {
             // Store the image in cache folder
             fs.writeFile('public/imageCache/' + pageObject.file, body, 'binary', function (err) {});
             var doneImage = Object.assign({}, {caption: pageObject.caption, filename: pageObject.file});
-            debugger;
             // return the caption/file object
             callback(null, doneImage);
           } else {
