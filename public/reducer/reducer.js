@@ -34,7 +34,6 @@ var reducer = function (state, action) {
   }
 };
 
-module.exports = exports = {
+module.exports = {
   reducer: reducer
-
 };
