@@ -1,14 +1,9 @@
-var refillCache = function () {
-  return {
-    type: 'REFILLCACHE'
-  };
-};
-
 var nextImage = function () {
   return {
     type: 'NEXTIMAGE'
-  }
-}
+  };
+};
+
 var changeMode = function (newMode) {
   return {
     type: 'CHANGEMODE',
@@ -16,8 +11,7 @@ var changeMode = function (newMode) {
   };
 };
 
-module.exports {
-  'refillCache': refillCache,
-  'nextImage': nextImage,
-  'changeMode': changeMode
+module.exports = {
+  nextImage: nextImage,
+  changeMode: changeMode
 };
