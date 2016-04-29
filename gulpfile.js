@@ -31,9 +31,12 @@ gulp.task('browserify', function () {
       .pipe(source('main.js'))
       .pipe(gulp.dest('./public/build/'));
   };
+
   bundle();
+
   return watcher.on('update', function (filenames) {
     filenames.forEach(function (filename) {
+      // List the file that was changed
       console.log(path.relative(__dirname, filename) + ' changed.');
     });
     bundle();

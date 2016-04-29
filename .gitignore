@@ -8,7 +8,7 @@
 *.grunt
 
 # Dependency Directory
-node_modules
+node_modules/
 
 # npm Debug log
 npm-debug.log
@@ -17,3 +17,7 @@ npm-debug.log
 
 # Image files
 *.jpg
+
+# All the data folders
+db/data_images/*
+db/data_text/*

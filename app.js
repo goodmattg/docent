@@ -1,22 +1,16 @@
-// var getImage = require('./public/helpers/getImage.js');
-// var fillCache = require('./public/helpers/fillCache.js');
-// var initialCondition = require('./public/initialCondition/initialCondition.js');
-
-// var init = initialCondition();
-
-// init.then(function (result) {
-//   console.log(JSON.stringify(result));
-// });
-
-// Simple Express server to serve static files
+// Express Server hosts static files (for the moment copied from HW7)
 var express = require('express');
 var path = require('path');
 var ejs = require('ejs');
+var bodyParser = require('body-parser');
+var db = require('./db/mongo.js');
+var createStore = require('redux').createStore; // SERVER-SIDE STORE
+
+var nextImageRouter = require('./middlewares/newImage.js');
 
 var app = express();
-var port = process.env.PORT || 3000;
 
-app.set('port', port);
+
 
 // Use the EJS rendering engine for HTML located in /views
 app.set('views', __dirname + '/views');
@@ -26,16 +20,35 @@ app.set('view engine', 'html');
 // Host static files on URL path
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Use express Router middleware for root path
-// app.use(app.router);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/newImage', nextImageRouter);
 
 app.get('/', function (req, res) {
   res.render('index');
 });
 
+app.set('port', process.env.PORT || 3000);
+
 // Start server
 app.listen(app.get('port'), function () {
-  console.log('Express game server listening on port ' + port);
+  console.log('Express game server listening on port 3000');
 });
 
-// new
+// ** ERROR ROUTERS **
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+
+module.exports = app;

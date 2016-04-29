@@ -1,6 +1,7 @@
-var nextImage = function () {
+var nextImage = function (piece) {
   return {
-    type: 'NEXTIMAGE'
+    type: 'NEXTIMAGE',
+    data: piece
   };
 };
 
@@ -11,7 +12,15 @@ var changeMode = function (newMode) {
   };
 };
 
+var setInitialAsync = function (state) {
+  return {
+    type: 'SETINITIAL_ASYNC',
+    data: state
+  };
+};
+
 module.exports = {
   nextImage: nextImage,
-  changeMode: changeMode
+  changeMode: changeMode,
+  setInitialAsync: setInitialAsync
 };
