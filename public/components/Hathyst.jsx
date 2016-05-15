@@ -72,11 +72,13 @@ var Hathyst = React.createClass({
         <h4> Wow look at you so cultured. </h4>
       </div>
       <div className = "image-container">
-        <img src={'data:image/jpeg;base64,' + this.state.newImage} alt="boohoo" />
+        <img src={'data:image/jpeg;base64,' + this.state.newImage} style={{maxWidth: '100%'}} alt="boohoo" />
       </div>
     </div>
     );
   }
 });
+
+
 
 module.exports = Hathyst;
