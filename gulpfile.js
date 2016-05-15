@@ -6,8 +6,11 @@ var watchify = require('watchify');
 var resolutions = require('browserify-resolutions');
 var eslint = require('gulp-eslint');
 var path = require('path');
+var livereload = require('gulp-livereload');
+
 
 gulp.task('browserify', function () {
+  livereload.listen();
   var bundler = browserify({
     entries: ['./public/main.jsx'], // bundle the main.jsx file
     paths: ['./node_modules','./public'], // bundle modules and other files
@@ -29,7 +32,8 @@ gulp.task('browserify', function () {
         console.log(err.toString());
       })
       .pipe(source('main.js'))
-      .pipe(gulp.dest('./public/build/'));
+      .pipe(gulp.dest('./public/build/'))
+      .pipe(livereload());
   };
 
   bundle();

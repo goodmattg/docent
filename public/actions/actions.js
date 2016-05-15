@@ -1,21 +1,21 @@
 var nextImage = function (piece) {
   return {
     type: 'NEXTIMAGE',
-    data: piece
+    newPiece: piece
   };
 };
 
-var changeMode = function (newMode) {
+var changeMode = function (mode) {
   return {
     type: 'CHANGEMODE',
-    mode: newMode
+    newMode: mode
   };
 };
 
 var setInitialAsync = function (state) {
   return {
     type: 'SETINITIAL_ASYNC',
-    data: state
+    initialState: state
   };
 };
 

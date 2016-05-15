@@ -25,7 +25,6 @@ var Hathyst = React.createClass({
     init.then(function (newState) {
       // this.setState(newState);
       this.props.store.dispatch(actions.setInitialAsync(newState));
-      // BUG IS THAT THE INITIAL STATE SETS THE COMPONENT NOT THE STORE --> fire action?
     }.bind(this));
   },
 
@@ -56,6 +55,12 @@ var Hathyst = React.createClass({
     var isYesMode = (this.state.mode === 'yes' ? 'block' : 'none');
     var isAnswerMode = this.state.mode === 'answer';
 
+    var styles = {
+      image: {
+        maxWidth: '100%'
+      }
+    };
+
     return (
     <div className = "view-container">
       <div className = "control-container">
@@ -72,7 +77,7 @@ var Hathyst = React.createClass({
         <h4> Wow look at you so cultured. </h4>
       </div>
       <div className = "image-container">
-        <img src={'data:image/jpeg;base64,' + this.state.newImage} style={{maxWidth: '100%'}} alt="boohoo" />
+        <img src={'data:image/jpeg;base64,' + this.state.newImage} style={styles.image} alt="boohoo" />
       </div>
     </div>
     );
