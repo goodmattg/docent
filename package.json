@@ -24,6 +24,7 @@
     "gulp": "*",
     "gulp-eslint": "*",
     "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.3.1",
     "html-to-json": "*",
     "jsdom": "*",
     "mocha": "*",

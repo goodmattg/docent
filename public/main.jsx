@@ -4,7 +4,6 @@ var fs = require('fs');
 var $ = require('jquery');
 var createStore = require('redux').createStore;
 var reducers = require('./reducer/reducer.js').reducer; // IS THIS IMPORTED CORRECTLY
-var Hathyst = require('./components/Hathyst.jsx');
 var ParentPage = require('./components/ParentPage.jsx');
 var actions = require('./actions/actions.js');
 
@@ -16,7 +15,8 @@ var store = createStore(reducers,
                             title: '',
                             year: ''
                           },
-                          initialStateReceived: 'false'}
+                          portfolio: [],
+                          initialStateReceived: false}
                         );
 
 var topLevelPage = <ParentPage store={store}/>;

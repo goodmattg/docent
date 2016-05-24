@@ -5,6 +5,7 @@ var initialState = require('../initialCondition/initialCondition.js');
 var getNewImage = require('../helpers/getImage.js');
 var HidableContainer = require('./HidableContainer.jsx');
 var Clickable = require('./Clickable.jsx');
+var Portfolio = require('./Portfolio.jsx');
 
 var ParentPage = React.createClass({
   propTypes: {
@@ -27,6 +28,9 @@ var ParentPage = React.createClass({
       // this.setState(newState);
       this.props.store.dispatch(actions.setInitialAsync(newState));
     }.bind(this));
+
+    // Component responds to key presses on page
+    window.addEventListener("keydown", this.handleKeyPress);
   },
 
   buttonClicked: function (buttonComp) {
@@ -51,7 +55,27 @@ var ParentPage = React.createClass({
         }.bind(this));
         break;
     }
+  },
 
+  handleKeyPress: function(event) {
+    if (this.state.initialStateReceived) {
+      console.log('Key was hit');
+      switch (event.keyCode) {
+        case 37:
+          // Only push to dash once per image
+          if (this.state.dashPushOpen) {
+            this.props.store.dispatch(actions.addStill());
+          }
+          break;
+        case 39:
+          // Get next image
+          var newImage_PR = getNewImage(this.state.seen);
+            newImage_PR.then(function (piece) {
+            this.props.store.dispatch(actions.nextImage(piece));
+          }.bind(this));
+          break;
+      }
+    }
   },
 
   render: function() {
@@ -63,7 +87,7 @@ var ParentPage = React.createClass({
     };
 
     var buttonGroup;
-    if (this.state.initialStateReceived === 'true') {
+    if (this.state.initialStateReceived) {
       // Initial State Receieved - render buttons
       buttonGroup =
         <div className = "control-container">
@@ -95,7 +119,12 @@ var ParentPage = React.createClass({
         <div className = "image-container">
           <img src={'data:image/jpeg;base64,' + this.state.newImage} style={styles.image} alt="boohoo" />
         </div>
+
+        <Portfolio initialStills={this.state.portfolio} />
+
       </div>
+
+
     );
 
 

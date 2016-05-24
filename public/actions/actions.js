@@ -19,8 +19,15 @@ var setInitialAsync = function (state) {
   };
 };
 
+var addStill = function (currentPiece) {
+  return {
+    type: 'ADDSTILL',
+  };
+};
+
 module.exports = {
   nextImage: nextImage,
   changeMode: changeMode,
-  setInitialAsync: setInitialAsync
+  setInitialAsync: setInitialAsync,
+  addStill: addStill
 };

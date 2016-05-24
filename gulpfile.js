@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
+var sass = require('gulp-sass');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var watchify = require('watchify');
@@ -8,6 +9,26 @@ var eslint = require('gulp-eslint');
 var path = require('path');
 var livereload = require('gulp-livereload');
 
+var JS = [
+  'public/**/*.jsx',
+  'public/actions/*.js',
+  'public/reducer/*.js',
+  'public/main.jsx'
+];
+
+// Linting task
+gulp.task('eslint', function () {
+  return gulp.src(JS)
+    .pipe(eslint())
+    .pipe(eslint.format());
+});
+
+// Converts sass to css
+gulp.task('sass', function () {
+  return gulp.src('styles/sass/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('styles/css'));
+});
 
 gulp.task('browserify', function () {
   livereload.listen();
@@ -47,17 +68,7 @@ gulp.task('browserify', function () {
   });
 });
 
+gulp.watch('styles/sass/*.scss', ['sass']);
 gulp.task('default', ['browserify']);
 
-var JS = [
-  'public/**/*.jsx',
-  'public/actions/*.js',
-  'public/reducer/*.js',
-  'public/main.jsx'
-];
 
-gulp.task('eslint', function () {
-  return gulp.src(JS)
-    .pipe(eslint())
-    .pipe(eslint.format());
-});
