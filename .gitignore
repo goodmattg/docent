@@ -21,3 +21,6 @@ npm-debug.log
 # All the data folders
 db/data_images/*
 db/data_text/*
+
+# Other misc. files
+gulpOld.js
