@@ -31,7 +31,7 @@ render: function () {
 
  // Render each of stills in the portfolio - determine how to do this with flexbox pattern
  return(
-  <div className='porfolioContainer'>
+  <div className='portfolioContainer'>
     {stillComponents}
   </div>
  );

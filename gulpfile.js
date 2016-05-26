@@ -69,7 +69,7 @@ var bundler = browserify({
 
 // Watcher on the bundle
 
-gulp.task('bundle', function () {
+gulp.task('bundle', ['sass'], function () {
   bundler.bundle()
   .on('error', function (err) {
     console.log(err.toString());
@@ -92,7 +92,7 @@ gulp.task('refresh', ['bundle'], function () {
 
 gulp.task('default', ['browser-sync'], function () {
     gulp.watch(JS, ['refresh']);
-    gulp.watch('styles/sass/*.scss', ['sass']);
+    gulp.watch('public/styles/sass/*.scss', ['sass']);
 });
 
 // ---------- Extra tasks ------------- //
@@ -106,9 +106,9 @@ gulp.task('eslint', function () {
 
 // Converts sass to css
 gulp.task('sass', function () {
-  return gulp.src('styles/sass/*.scss')
+  return gulp.src('public/styles/sass/*.scss')
     .pipe(sass())
-    .pipe(gulp.dest('styles/css'))
+    .pipe(gulp.dest('public/styles/css'))
     .pipe(browserSync.reload({ stream: true }));
 });
 

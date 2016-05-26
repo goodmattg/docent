@@ -1,0 +1,22 @@
+.windowRoot {
+  display: flex; }
+
+.mediaIntakePane {
+  width: 75%; }
+
+.image-container {
+  display: flex;
+  justify-content: center; }
+
+.dashboardPane {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  padding-left: 10px;
+  border-left: 1px solid #D7DBDD; }
+
+.portfolioContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-width: 100%; }

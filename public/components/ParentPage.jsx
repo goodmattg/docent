@@ -59,7 +59,6 @@ var ParentPage = React.createClass({
 
   handleKeyPress: function(event) {
     if (this.state.initialStateReceived) {
-      console.log('Key was hit');
       switch (event.keyCode) {
         case 37:
           // Only push to dash once per image
@@ -82,7 +81,7 @@ var ParentPage = React.createClass({
 
     var styles = {
       image: {
-        maxWidth: '100%'
+        maxWidth: '100%',
       }
     };
 
@@ -104,24 +103,27 @@ var ParentPage = React.createClass({
     var confirmation_info = ['Wow look at you so cultured.'];
 
     return (
-      <div className = "view-container">
+      <div className = 'windowRoot'>
+        <div className = "mediaIntakePane">
 
-        {buttonGroup}
+          <HidableContainer key='no-container' ident='no-container'
+          trigger={this.state.mode ==='no'} current_mode={this.state.mode}
+          info={caption_info} />
 
-        <HidableContainer key='no-container' ident='no-container'
-        trigger='no' current_mode={this.state.mode}
-        info={caption_info} />
+          <HidableContainer key='yes-container' ident='yes-container'
+          trigger={this.state.mode ==='yes'} current_mode={this.state.mode}
+          info={confirmation_info} />
 
-        <HidableContainer key='yes-container' ident='yes-container'
-        trigger='yes' current_mode={this.state.mode}
-        info={confirmation_info} />
+          <div className = "image-container">
+            <img src={'data:image/jpeg;base64,' + this.state.newImage} style={styles.image} alt="boohoo" />
+          </div>
 
-        <div className = "image-container">
-          <img src={'data:image/jpeg;base64,' + this.state.newImage} style={styles.image} alt="boohoo" />
+
         </div>
 
-        <Portfolio initialStills={this.state.portfolio} />
-
+        <div className='dashboardPane'>
+          <Portfolio initialStills={this.state.portfolio} />
+        </div>
       </div>
 
 

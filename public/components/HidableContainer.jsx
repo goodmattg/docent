@@ -5,7 +5,7 @@ var HidableContainer = React.createClass({
   render: function () {
 
     // Hidden container triggered. Render information
-    if (this.props.trigger === this.props.current_mode) {
+    if (this.props.trigger) {
 
       var displayInformation = [];
       for (let i = 0; i < this.props.info.length ; i++) {
