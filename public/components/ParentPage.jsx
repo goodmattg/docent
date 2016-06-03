@@ -6,6 +6,7 @@ var getNewImage = require('../helpers/getImage.js');
 var HidableContainer = require('./HidableContainer.jsx');
 var Clickable = require('./Clickable.jsx');
 var Portfolio = require('./Portfolio.jsx');
+var CommentSubmit = require('./CommentSubmit.jsx')
 
 var ParentPage = React.createClass({
   propTypes: {
@@ -118,6 +119,7 @@ var ParentPage = React.createClass({
             <img src={'data:image/jpeg;base64,' + this.state.newImage} style={styles.image} alt="boohoo" />
           </div>
 
+          <CommentSubmit />
 
         </div>
 

@@ -18,6 +18,9 @@ npm-debug.log
 # Image files
 *.jpg
 
+# The build file
+public/build/main.js
+
 # All the data folders
 db/data_images/*
 db/data_text/*
